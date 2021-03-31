@@ -14,10 +14,13 @@ use App\Http\Controllers\Backend\FormationStageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\PersonalDetailController;
 use App\Http\Controllers\Admin\FormationTransactionController;
+use App\Http\Controllers\Admin\AppointmentController;
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\Backend\EventController;
+use App\Http\Controllers\Admin\EventTransactionController;
 
 
 /*
@@ -66,6 +69,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {  //prevent-
     Route::resource('/state', StateController::class)->except('show');
     Route::resource('/state', StateController::class)->except('show');
     Route::resource('/formationTransaction', FormationTransactionController::class);
+    Route::resource('/eventTransaction', EventTransactionController::class);
+    Route::resource('/event', EventController::class)->except('show');
+    Route::resource('/appointment', AppointmentController::class);
     
   });
   //user related page

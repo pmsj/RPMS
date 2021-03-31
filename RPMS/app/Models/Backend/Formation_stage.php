@@ -17,12 +17,16 @@ class Formation_stage extends Model
     //Formation Stage has many  Users
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'formation_transactions', 'user_id','formation_stage_id',)
-        ->withPivot('concerned_authority', 'community_id', 'start_date', 'end_date', 'created_at', 'updated_at');
+        return $this->belongsToMany('App\Models\User', 'formation_transactions')
+        ->withPivot('start_date', 'end_date', 'concerned_authority', 'community_id', 'created_at', 'updated_at')
+        ->OrderBy('first_name');
     }
 
-    public function community()
+
+    public function communities()
     {
-        return $this->hasOne('App\Models\Backend\Community');
+        return $this->belongsToMany('App\Models\Backend\Community', 'formation_transactions')
+        ->withPivot('start_date', 'end_date', 'concerned_authority', 'user_id', 'created_at', 'updated_at')
+        ->orderBy('id');
     }
 }

@@ -81,18 +81,13 @@ class CommunityController extends Controller
 
     public function show($id)
     { //nothing added yet
-        //
+        
     }
 
 
     public function edit($id)
     {
-        //getting  table data by id
-        // $community_data = Community::find($id);
-
-        //passing the id to view using compact method
-        // return view('backend.community.edit', compact('community_data'));
-
+        
         $data['communities'] = Community::find($id);
 
         if (!Community::find($id)) {

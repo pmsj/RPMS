@@ -52,6 +52,7 @@
                 <li class="nav-item table-hover"> <a class="nav-link" href="{{ route('admin.country.index')}}"><i class="fas fa-globe-africa"></i>Country</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin.designation.index')}}"><i class="fas fa-user-tie"></i>Designation</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin.district.index')}}"><i class="fas fa-map-marker-alt"></i>District</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin.event.index')}}"><i class="fas fa-map-marker-alt"></i>Events</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin.formationStage.index')}}"><i class="fas fa-map-signs"></i>Formation Stage</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin.institution.index')}}"><i class="fas fa-university"></i>Institution</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin.ministry.index')}}"><i class="fas fa-vihara"></i>Ministry</a></li>
@@ -139,6 +140,40 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{route('admin.formationTransaction.index')}}"><i class="far fa-eye text-warning"></i>View F.Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('admin.formationTransaction.create')}}"><i class="fas fa-user-plus text-warning"></i>Add A.Details</a></li>
+                </ul>
+              </div>
+          </li>
+          {{-- events of a priest --}}
+          <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#auth5" aria-expanded="false" aria-controls="auth5">
+                <span class="menu-icon">
+                  <i class="mdi mdi-security"></i>
+                </span>
+                <i class="fas fa-pray text-primary font-weight-bolder"></i>
+                <span class="menu-title">Priest Event Details</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth5">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{route('admin.eventTransaction.index')}}"><i class="far fa-eye text-warning"></i>View E.Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('admin.eventTransaction.create')}}"><i class="fas fa-user-plus text-warning"></i>Add E.Details</a></li>
+                </ul>
+              </div>
+          </li>
+          {{-- appointments link --}}
+          <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#auth6" aria-expanded="false" aria-controls="auth6">
+                <span class="menu-icon">
+                  <i class="mdi mdi-security"></i>
+                </span>
+                <i class="fas fa-pray text-primary font-weight-bolder"></i>
+                <span class="menu-title">Appointments</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth6">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{route('admin.appointment.index')}}"><i class="far fa-eye text-warning"></i>View Appointments</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('admin.appointment.create')}}"><i class="fas fa-user-plus text-warning"></i>Make Appointment</a></li>
                 </ul>
               </div>
           </li>

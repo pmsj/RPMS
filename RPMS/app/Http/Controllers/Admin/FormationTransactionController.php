@@ -8,7 +8,8 @@ use App\Models\Backend\Formation_stage;
 use App\Models\Backend\Community;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -25,14 +26,13 @@ class FormationTransactionController extends Controller
      */
     public function index()
     {
-        $formationStages = Formation_stage::first();
-        $users = User::orderBy('first_name','asc')->get();
-        
+        $formationStage = Formation_stage::first();
+        $users = $formationStage->users;
         return view('admin.formationTransaction.index', compact([
-            'formationStages',
-            'users'
+            'users',
+            'formationStage'
         ]));
-        
+
     }
 
     /**
@@ -49,12 +49,7 @@ class FormationTransactionController extends Controller
         return view('admin.formationTransaction.create', compact(['formationStages', 'users', 'communities']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
          $request->validate(
@@ -94,16 +89,18 @@ class FormationTransactionController extends Controller
        
         $user = User::find($id);
 
+        //check if user exists
         if (!$user) 
         {
             Alert::warning('Sorry !', 'No records found with this id !');
             return redirect()->route('admin.formationTransaction.index');
         }
 
-        $formationStages = Formation_stage::all();
-        $communities = $user->community;
-        // dd($communities);
-        return view('admin.formationTransaction.show', compact(['user', 'communities', 'formationStages']));
+        $communitiy = Community::OrderBy('community_name', 'asc')->paginate(10);
+
+        $communities = $user->communities;
+        return view('admin.formationTransaction.show', compact(['user', 'communities', 'communitiy']));
+
     }
 
     /**
@@ -114,7 +111,11 @@ class FormationTransactionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $formationStages = Formation_stage::all();
+        $users = User::all();
+        $communities = Community::all();
+
+        return view('admin.formationTransaction.create', compact(['formationStages', 'users', 'communities']));
     }
 
     /**

@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="{{asset('backend1/assets/css/argon.css?v=1.2.0')}}" type="text/css">
   <!--fontawsome icons-->
   <link href="{{asset('backend1/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+
+  <!---Date picker--->
+  <script src="{{asset('backend1/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+
 </head>
 
 <body class="g-sidenav-show g-sidenav-hidden">
@@ -59,6 +63,8 @@
   <script src="{{asset('backend1/assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
   <!-- Argon JS -->
   <script src="{{asset('backend1/assets/js/argon.js?v=1.2.0')}}"></script>
+  <!---Date picker--->
+  <script src="{{asset('backend1/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
        {{--Sweet alert from guit hub  --}}
   @include('sweetalert::alert')

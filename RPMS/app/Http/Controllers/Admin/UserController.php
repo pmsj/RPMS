@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Password;
+// use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use RealRashid\SweetAlert\Facades\Alert;
-use Mockery\Generator\StringManipulation\Pass\Pass;
+// use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class UserController extends Controller
 {
@@ -57,13 +57,17 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view(
-            'admin.users.edit',
-            [
-                'roles' => Role::all(),
-                'user' => User::find($id)
-            ]
-        );
+
+        $user = User::find($id);
+
+        if (!$user) {
+            Alert::error('Sorry !', 'You cannot edit this user');
+
+            return redirect(route('admin.users.index'));
+        }
+
+        $roles = Role::all();
+        return view('admin.users.edit', compact(['user', 'roles']));
     }
 
 
@@ -76,6 +80,7 @@ class UserController extends Controller
 
             return redirect(route('admin.users.index'));
         }
+       
         $user->update($request->except(['_token', 'roles']));
         $user->roles()->sync($request->roles);
 

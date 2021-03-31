@@ -27,7 +27,7 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Formation Stage Name</label>
-                      <input type="text" name="stage_name" value="{{$formation_stage_data->stage_name}}" id="input-username" class="form-control text-  " >
+                      <input type="text" name="stage_name" value="{{$formation_stage_data->stage_name}}" id="input-username" class="form-control text-primary  " >
                       @error('stage_name')
                       <span class="text-danger text-small">{{ $message }}</span>
                       @enderror
@@ -42,7 +42,7 @@
                     </div>
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Formation Stage Duration</label>
-                        <input type="text" name="stage_duration" value="{{$formation_stage_data->stage_duration}}" id="input-username" class="form-control text-  " >
+                        <input type="text" name="stage_duration" value="{{$formation_stage_data->stage_duration}}" id="input-username" class="form-control text-primary " >
                         @error('stage_duration')
                         <span class="text-danger text-small">{{ $message }}</span>
                         @enderror

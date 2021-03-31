@@ -10,15 +10,15 @@
       <div class="card-header border-0 bg-secondary">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0 float-right text-default">Formation Details</h3>
+            <h3 class="mb-0 float-right text-default">Priest's Event Details</h3>
           </div>
-          <a href="{{route('admin.formationTransaction.create')}}" 
+          <a href="{{route('admin.eventTransaction.create')}}" 
             class="badge badge-pill badge-warning badge-circle badge-lg display-inline-block " 
             data-toggle="tooltip" data-placement="top" title="Click to Add Formation Stage Data">
             <i class="fas fa-plus-circle"></i>
           </a>
           <div class="col text-right">
-            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-md badge-circle badge-floating badge-secondary border-white"></span></a>
+            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-md badge-circle badge-floating badge-secondary border-white">{{count($users)}}</span></a>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
              @foreach($users as $user)
                 <tr class="text-center">
                   <td class="text-default font-weight-bolder" scope="col">
-                    <a href="{{route('admin.formationTransaction.show', $user->pivot->user_id)}}"  
+                    <a href="{{route('admin.eventTransaction.show', $user->pivot->user_id)}}"  
                       data-toggle="tooltip" data-placement="top" title="Click to see more"
                       class="btn btn-md badge badge-pill text-dark font-weight-bolder">
                       {{$user->first_name." ".$user->sur_name}}
@@ -52,12 +52,12 @@
                      </a>
                   </td>
                   <td>
-                    <a href="{{route('admin.formationTransaction.show', $user->pivot->user_id)}}">
-                      <span class="btn btn-sm badge-pill ">{{implode(' , ',$user->formationStages()->orderBy('id')->get()->pluck('stage_name')->toArray())}}</span>
+                    <a href="{{route('admin.eventTransaction.show', $user->pivot->user_id)}}">
+                      <span class="btn btn-sm badge-pill ">{{implode(' , ',$user->events()->orderBy('id')->get()->pluck('event_name')->toArray())}}</span>
                     </a>  
                   </td>
                   <td>
-                    <a href="{{route('admin.formationTransaction.show', $user->pivot->user_id)}}"   
+                    <a href="{{route('admin.eventTransaction.show', $user->pivot->user_id)}}"   
                       class="btn-info btn-xs badge badge-pill badge-sm" 
                       data-toggle="tooltip" data-placement="top" title="Click to see more">
                       See More
@@ -75,8 +75,8 @@
           <div class="container-fluid d-flex align-items-center">
             <div class="row">
               <div class="col-lg-12 col-md-10">
-                <h3 class="display-4 text-white">Formation Details list if empty!</h3>
-                <p class="text-white mt-0 mb-5">Please Enter individaul Formation stage details.</p>
+                <h3 class="display-4 text-white">Priest's Events list if empty!</h3>
+                <p class="text-white mt-0 mb-5">Please Enter individaul event details.</p>
               </div>
             </div>
           </div>

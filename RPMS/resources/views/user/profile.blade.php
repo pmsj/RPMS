@@ -16,7 +16,7 @@
             </span> {{Auth::user()->first_name}} {{Auth::user()->sur_name}}
             </h6>
             <p class="text-white mt-0 mb-5">
-              This is your profile page.<br> You can <strong>view</strong> and <strong>update</strong> | Name | Email | Password | Profile
+              This is your profile page.<br> You can <strong class="text-yellow font-weight-bolder" >view</strong> and <strong class="text-yellow font-weight-bolder">update</strong> | Name | Email | Password | Profile
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@
   @isset(Auth::user()->personalDetail)
   <div class="row">
 <!---User card with pic-->
-    <div class="container-fluid mt--5">
+    <div class="container-fluid mt--2">
       <div class="row">
         {{-- image upload --}}
          @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -72,7 +72,7 @@
                 </div>
               {{-- User Card and pictrure --}}
                 <div class="text-center">
-                  <h3>
+                  <h3 class="text-default font-weight-bolder">
                     {{Auth::user()->first_name}} {{Auth::user()->sur_name}}<span class="font-weight-light">, <strong class="text-info">{{Auth::user()->getAge()}}</strong></span>
                   </h3>
                   <div class="h5 font-weight-300">
@@ -87,19 +87,20 @@
                     <i class="ni business_briefcase-24 mr-2"></i>
                     <strong class="text-primary">Roles:</strong>
                     <a href="#" class="badge badge-pill badge-warning">
-                    <i class="fas fa-user-tag"></i>
-                    <strong class="text-gradient-default" title="Roles">
-                    {{implode(', ', Auth::user()->roles()->get()->pluck('role_name')->toArray())}}
-                    </strong>
-                </a>
+                      <i class="fas fa-user-tag"></i>
+                      <strong class="text-gradient-default" title="Roles">
+                        {{implode(', ', Auth::user()->roles()->get()->pluck('role_name')->toArray())}}
+                      </strong>
+                    </a>
                   </div>
-                  <div>
-                    <i class="ni education_hat mr-2"></i>
-                  </div>
+                  <small class="font-weight-bolder text-warning">
+                    {{Auth::user()->YearsAsJesuit()}} Years <span class="text-dark">|</span>
+                      <span class="text-default">As a Jesuit</span>
+                  </small>
                   <hr class="my-3" />
                     <div class="">
                       <span class="h3 text-muted">
-                        Ranchi Jesuit Province
+                        Ranchi Jesuit Province 
                       </span>  
                     </div>  
                 </div>

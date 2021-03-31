@@ -9,19 +9,19 @@
           <div class="card-header bg-default shadow-lg">
             <div class="row align-items-center">
               <div class="col-8">
-                <h3 class="mb-0 text-white ml-2"><i class="fas fa-user-plus mr-2 text-info"></i>Add Formation Stage Data
+                <h3 class="mb-0 text-white ml-2"><i class="fas fa-user-plus mr-2 text-info"></i>Add Priest's Event Data
                   </a>
                 </h3>
               </div>
             </div>
-            <a href="{{ route('admin.formationTransaction.index')}}" class="badge badge-pill badge-danger float-right mt--4"><i class="fas fa-angle-double-left"></i></i> Go back</a>
+            <a href="{{ route('admin.eventTransaction.index')}}" class="badge badge-pill badge-danger float-right mt--4"><i class="fas fa-angle-double-left"></i></i> Go back</a>
           </div>
           <div class="card-body">
             {{-- Form --}}
-            <form method="POST" action="{{route('admin.formationTransaction.store')}}">
+            <form method="POST" action="{{route('admin.eventTransaction.store')}}">
             {{-- CSRF Token --}}
             @csrf
-            <h6 class="heading-small text-muted mb-4">Fill Personal Formation Stage detail using this form </h6>
+            <h6 class="heading-small text-muted mb-4">Fill  Priest's Event detail using this form </h6>
             <div class="pl-lg-4">
                 <div class="row">
                       {{-- first name field --}}
@@ -41,30 +41,41 @@
                             @endif
                         </div>
                     </div>
-                        {{-- Formation stage id field--}}
+                        {{-- Event id field--}}
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="formation_stage_id">Formation Stage</label>
-                            <select name="formation_stage_id" class="form-control text-primary" id="exampleFormControlSelect1">
-                                <option value="" selected>Choose a Formation Stage</option>
-                                @foreach($formationStages as $key => $formationStage)
-                                    <option {{old('formationStage_id') == $formationStage->id ? 'selected' : null}} value="{{$formationStage->id}}">{{$formationStage->stage_name}}</option>
+                            <label class="form-control-label" for="event_id">Event</label>
+                            <select name="event_id" class="form-control text-primary" id="exampleFormControlSelect1">
+                                <option value="" selected>Choose an event</option>
+                                @foreach($events as $key => $event)
+                                    <option {{old('event_id') == $event->id ? 'selected' : null}} value="{{$event->id}}">{{$event->event_name}}</option>
                                 @endforeach
                             </select>
-                             @if($errors->has('formation_stage_id'))
+                             @if($errors->has('event_id'))
                             <span class="text-danger text-small">
-                                {{ $errors->first('formation_stage_id') }}
+                                {{ $errors->first('event_id') }}
                             </span>
                             @endif
                         </div>
                     </div>
-                        {{-- concerned authority filed --}}
+                      {{-- held  on --}}
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="concerned_authority">Concerned Authority</label>
-                            <input type="text" name="concerned_authority" id="sur_name" class="form-control text-primary @error('concerned_authority') is-invalid @enderror" 
-                           value="{{old('concerned_authority')}}">
-                            @error('concerned_authority')
+                            <label class="form-control-label" for="held_on">Held On</label>
+                            <input type="date" name="held_on" id="input-username" class="form-control datepicker text-primary @error('held_on') is-invalid @enderror" 
+                            value="{{old('held_on')}}">
+                            @error('held_on')
+                            <span class="text-danger text-small">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                        {{-- Presided over by filed --}}
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="presided_over_by">Presided Over By</label>
+                            <input type="text" name="presided_over_by" id="sur_name" class="form-control text-primary @error('presided_over_by') is-invalid @enderror" 
+                           value="{{old('presided_over_by')}}">
+                            @error('presided_over_by')
                             <span class="text-danger text-small">{{ $message }}</span>
                             @enderror
                         </div>
@@ -73,7 +84,7 @@
                         <div class="form-group">
                             <label class="form-control-label" for="community_id">Community</label>
                             <select name="community_id" class="form-control text-primary" id="exampleFormControlSelect1">
-                                <option value="" selected>Choose Residing Community</option>
+                                <option value="" selected>Choose Residing Community (if applicable)</option>
                                 @foreach($communities as $key => $community)
                                     <option value="{{$community->id}}" {{old('community_id') == $community->id ? 'selected' : null}}>{{$community->community_name}}</option>
                                 @endforeach
@@ -85,31 +96,20 @@
                             @endif
                         </div>
                     </div>
-                        {{-- Start date --}}
-                    <div class="col-lg-6">
+                    {{-- Place --}}
+                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="start_date">Start Date</label>
-                            <input type="date" name="start_date" id="input-username" class="form-control datepicker text-primary @error('start_date') is-invalid @enderror" 
-                            value="{{old('start_date')}}">
-                            @error('start_date')
+                            <label class="form-control-label" for="place">Place</label>
+                            <input type="text" name="place" id="place" class="form-control text-primary @error('place') is-invalid @enderror" 
+                           value="{{old('place')}}">
+                            @error('place')
                             <span class="text-danger text-small">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    {{-- End date --}}
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="end_date">End Date</label>
-                            <input type="date" name="end_date" id="input-username" class="form-control text-primary @error('end_date') is-invalid @enderror" 
-                            value="{{old('end_date')}}">
-                            @error('end_date')
-                            <span class="text-danger text-small">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>  
                         {{-- submit button and cancle button --}}
                         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                        <a href="{{route('admin.formationTransaction.index')}}" class="btn btn-sm btn-info">Cancle</a>    
+                        <a href="{{route('admin.event.index')}}" class="btn btn-sm btn-info">Cancle</a>    
                 </div>
             </div>
             </div>
@@ -118,7 +118,5 @@
         </div>
       </div>
     </div>
-    
-
 @endsection
 

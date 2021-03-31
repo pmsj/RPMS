@@ -9,7 +9,7 @@
                   <h3 class="mb-0 text-white">Personal Details
                     <a href="{{route('user.personalDetail.create')}}" 
                       class="badge badge-pill badge-warning badge-circle badge-md display-inline-block ml-2" 
-                      data-toggle="tooltip" data-placement="top" title="Click to Add Personal Details">
+                      data-toggle="tooltip" data-placement="top" title="Click to PersonalAdd Personal Details">
                     <i class="fas fa-plus-circle"></i>
                   </a>
                   </h3>

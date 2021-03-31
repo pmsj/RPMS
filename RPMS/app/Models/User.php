@@ -91,6 +91,13 @@ class User extends Authenticatable // default
         echo $years;
     }
 
+    public function YearsAsJesuit()
+    {
+        $entryDateOfSj = Auth::user()->entry_date_sj;
+        $yearsInSJ = Carbon::parse($entryDateOfSj)->age;
+        echo $yearsInSJ;
+    }
+
     //Role relationsip
     public function roles()
     {
@@ -123,21 +130,69 @@ class User extends Authenticatable // default
         return $this->hasOne('App\Models\PersonalDetail');
     }
 
-   
+   //---------------------Formation Transaction-------------------------
     //user has many Formation Stages
     public function formationStages()
     {
-        return $this->belongsToMany('App\Models\Backend\Formation_stage', 'formation_transactions', 'user_id','formation_stage_id')
-                    ->withPivot('concerned_authority', 'community_id', 'start_date', 'end_date', 'created_at', 'updated_at');
+        return $this->belongsToMany('App\Models\Backend\Formation_stage', 'formation_transactions')
+                    ->withPivot('start_date', 'end_date', 'concerned_authority', 'community_id', 'created_at', 'updated_at')
+                    ->orderBy('id');
     }
 
-    public function hasAnyFormationStages(array $formationStage)
+    public function communities()
     {
-        return null !== $this->formationStages()->whereIn('stage_name', $formationStage)->first();
+        return $this->belongsToMany('App\Models\Backend\Community', 'formation_transactions')
+        ->withPivot('start_date', 'end_date', 'concerned_authority', 'formation_stage_id','created_at', 'updated_at')
+        ->orderBy('id');
+        
     }
 
-    public function community()
+    //---------------------Event Transaction------------------------------
+
+    public function events()
     {
-        return $this->belongsTo('App\Models\Backend\Community');
+        return $this->belongsToMany('App\Models\Event', 'event_transactions')
+        ->withPivot('held_on','presided_over_by','community_id', 'place', 'created_at', 'updated_at')
+        ->orderBy('id');
+    }
+
+    public function communityEvents()
+    {
+        return $this->belongsToMany('App\Models\Backend\Community', 'formation_transactions')
+        ->withPivot('held_on', 'presided_over_by', 'event_id', 'place', 'created_at', 'updated_at')
+        ->orderBy('id');
+    }
+
+    //-----------------------Appointments--------------------------------------
+
+    public function ministries()
+    {
+        return $this->belongsToMany('App\Models\Backend\Ministry', 'appointments')
+        ->withPivot('institution_id','parish_id','start_date','end_date','remarks', 'community_id','created_at', 'updated_at');
+        
+    }
+
+    public function institutions()
+    {
+        return $this->belongsToMany('App\Models\Backend\Institution', 'appointments')
+        ->withPivot('ministry_id','parish_id','start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
+    }
+
+    public function parishes()
+    {
+        return $this->belongsToMany('App\Models\Backend\Parish', 'appointments', 'user_id', 'designation_id')
+        ->withPivot('ministry_id', 'institution_id','start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
+    }
+
+    public function designations()
+    {
+        return $this->belongsToMany('App\Models\Backend\Designation', 'appointments')
+        ->withPivot('user_id','ministry_id', 'institution_id', 'parish_id','start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
+    }
+
+    public function communityAppointements()
+    {
+        return $this->belongsToMany('App\Models\Backend\Community', 'appointments', 'user_id', 'designation_id')
+        ->withPivot('start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
     }
 }

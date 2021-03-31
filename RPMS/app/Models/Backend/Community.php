@@ -47,12 +47,37 @@ class Community extends Model
         return $this->hasMany('App\Models\Backend\FormationTransaction');
     }
 
+    //------------------------Formation Stage Transaction-----------------------
     public function users()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User', 'formation_transactions')
+        ->withPivot('start_date', 'end_date', 'concerned_authority', 'formation_stage_id', 'created_at', 'updated_at')
+        ->OrderBy('first_name');
     }
-    public function formationStage()
+
+
+    public function formationStages()
     {
-        return $this->belongsTo('App\Models\Formation_stage');
+        return $this->belongsToMany('App\Models\Backend\Formation_stage', 'formation_transactions')
+        ->withPivot('start_date', 'end_date', 'concerned_authority', 'user_id', 'created_at', 'updated_at')
+        ->orderBy('id');
+    }
+
+    //------------------------Event  Transaction-----------------------
+
+
+    public function userEvents()
+    {
+        return $this->belongsToMany('App\Models\User', 'event_transactions')
+        ->withPivot('held_on', 'presided_over_by', 'event_id', 'place', 'created_at', 'updated_at')
+        ->OrderBy('first_name');
+    }
+
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Models\Event', 'event_transactions')
+        ->withPivot('held_on', 'presided_over_by', 'user_id', 'place', 'created_at', 'updated_at')
+        ->orderBy('id');
     }
 }

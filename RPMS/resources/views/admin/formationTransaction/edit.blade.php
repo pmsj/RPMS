@@ -9,7 +9,7 @@
           <div class="card-header bg-default shadow-lg">
             <div class="row align-items-center">
               <div class="col-8">
-                <h3 class="mb-0 text-white ml-2"><i class="fas fa-user-plus mr-2 text-info"></i>Add Formation Stage Data
+                <h3 class="mb-0 text-white ml-2"><i class="fas fa-user-plus mr-2 text-info"></i>Edit Formation Stage Data
                   </a>
                 </h3>
               </div>
@@ -18,10 +18,10 @@
           </div>
           <div class="card-body">
             {{-- Form --}}
-            <form method="POST" action="{{route('admin.formationTransaction.store')}}">
+            <form method="POST" action="{{route('admin.formationTransaction.update', $users->pivot->user_id)}}">
             {{-- CSRF Token --}}
             @csrf
-            <h6 class="heading-small text-muted mb-4">Fill Personal Formation Stage detail using this form </h6>
+            <h6 class="heading-small text-muted mb-4">Edit Personal Formation Stage detail using this form </h6>
             <div class="pl-lg-4">
                 <div class="row">
                       {{-- first name field --}}
@@ -31,7 +31,7 @@
                             <select name="user_id" class="form-control text-primary" id="exampleFormControlSelect1">
                                 <option value="" selected>Choose a Name</option>
                                 @foreach($users as $key => $user)
-                                    <option {{old('user_id') == $user->id ? 'selected' : null}} value="{{$user->id}}">{{$user->first_name}} {{$user->sur_name}}</option>
+                                    <option {{$user->pivot->user_id == $user->id ? 'selected' : null}} value="{{$user->id}}">{{$user->first_name}} {{$user->sur_name}}</option>
                                 @endforeach
                             </select>
                              @if($errors->has('user_id'))
@@ -48,7 +48,8 @@
                             <select name="formation_stage_id" class="form-control text-primary" id="exampleFormControlSelect1">
                                 <option value="" selected>Choose a Formation Stage</option>
                                 @foreach($formationStages as $key => $formationStage)
-                                    <option {{old('formationStage_id') == $formationStage->id ? 'selected' : null}} value="{{$formationStage->id}}">{{$formationStage->stage_name}}</option>
+                                     <option {{$personalDetails->district_id == $district->id ? 'selected' : ''}} value="{{$district->id}}">{{$district->district_name}}</option>
+                                    <option {{$formationStage->formation_stage_id == $formationStage->id ? 'selected' : ''}} value="{{$formationStage->id}}">{{$formationStage->stage_name}}</option>
                                 @endforeach
                             </select>
                              @if($errors->has('formation_stage_id'))
@@ -63,7 +64,7 @@
                         <div class="form-group">
                             <label class="form-control-label" for="concerned_authority">Concerned Authority</label>
                             <input type="text" name="concerned_authority" id="sur_name" class="form-control text-primary @error('concerned_authority') is-invalid @enderror" 
-                           value="{{old('concerned_authority')}}">
+                           value="{{$user->pivot->concerned_authority}}">
                             @error('concerned_authority')
                             <span class="text-danger text-small">{{ $message }}</span>
                             @enderror
@@ -89,7 +90,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="start_date">Start Date</label>
-                            <input type="date" name="start_date" id="input-username" class="form-control text-primary @error('start_date') is-invalid @enderror" 
+                            <input type="date" name="start_date" id="input-username" class="form-control datepicker text-primary @error('start_date') is-invalid @enderror" 
                             value="{{old('start_date')}}">
                             @error('start_date')
                             <span class="text-danger text-small">{{ $message }}</span>

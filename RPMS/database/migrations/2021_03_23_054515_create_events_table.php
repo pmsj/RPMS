@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateFormationStagesTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,10 @@ class CreateFormationStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('formation_stages', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('stage_name', 50);
-            $table->string('stage_description', 200)->nullable();
-            $table->string('stage_duration', 30)->nullable();
+        Schema::create('events', function (Blueprint $table) {
+            $table->id();
+            $table->string('event_name', 50);
+            $table->string('event_description', 200)->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'))->nullable();
         });
@@ -31,6 +30,6 @@ class CreateFormationStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formation_stages');
+        Schema::dropIfExists('events');
     }
 }

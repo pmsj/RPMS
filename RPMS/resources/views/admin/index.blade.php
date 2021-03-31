@@ -8,18 +8,18 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <h5 class="card-title text-uppercase text-muted mb-0"></h5>
-              {{-- <span class="h2 font-weight-bold mb-0">Communities</span> --}}
+              <h5 class="card-title text-uppercase text-muted mb-0">Community</h5>
+                <span class="h2 font-weight-bold mb-0">70</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                <i class="ni ">5</i>
+                <i class="fas fa-hotel"></i>
               </div>
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i>Total</span>
-            <span class=" h2 text-nowrap">Community</span>
+            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+            <span class=" h2 text-nowrap">Communities</span>
           </p>
         </div>
       </div>
@@ -31,17 +31,17 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-              <span class="h2 font-weight-bold mb-0">2,356</span>
+              <span class="h2 font-weight-bold mb-0">50</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                <i class="ni ni-chart-pie-35"></i>
+                 <i class="fas fa-users"></i>
               </div>
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-            <span class="text-nowrap">Since last month</span>
+            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+            <span class="text-nowrap">New Members this year</span>
           </p>
         </div>
       </div>
@@ -52,18 +52,18 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-              <span class="h2 font-weight-bold mb-0">924</span>
+              <h5 class="card-title text-uppercase text-muted mb-0">New Appointments</h5>
+              <span class="h2 font-weight-bold mb-0">20</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                <i class="ni ni-money-coins"></i>
+                <i class="fas fa-calendar-check"></i>
               </div>
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-            <span class="text-nowrap">Since last month</span>
+            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+            <span class="text-nowrap">New Appoitments this year</span>
           </p>
         </div>
       </div>
@@ -74,18 +74,18 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-              <span class="h2 font-weight-bold mb-0">49,65%</span>
+              <h5 class="card-title text-uppercase text-muted mb-0">Transfers</h5>
+              <span class="h2 font-weight-bold mb-0">10</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                <i class="ni ni-chart-bar-32"></i>
+                <i class="fas fa-exchange-alt"></i>
               </div>
             </div>
           </div>
           <p class="mt-3 mb-0 text-sm">
-            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-            <span class="text-nowrap">Since last month</span>
+            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+            <span class="text-nowrap">Transfers this year</span>
           </p>
         </div>
       </div>

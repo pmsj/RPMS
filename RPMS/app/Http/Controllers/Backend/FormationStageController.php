@@ -30,8 +30,8 @@ class FormationStageController extends Controller
     {   //validation
         $formation_stage_data = $request->validate([
             'stage_name' => 'required|string|min:1|max:50',
-            'stage_description' => 'nullable|string',
-            'stage_duration' => 'nullable|string'
+            'stage_description' => 'required|string|max:200',
+            'stage_duration' => 'required|string'
         ],
         [
             'regex' => 'only characters and single space are allowed'
@@ -67,8 +67,8 @@ class FormationStageController extends Controller
          //validation
          $formation_stage_data = $request->validate([
             'stage_name' =>'required|string|min:1|max:50',
-            'stage_description' => 'nullable',
-            'stage_duration' => 'nullable'
+            'stage_description' => 'required|max:200',
+            'stage_duration' => 'required|string'
         ],
         [
             'regex' => 'only characters and single space are allowed'
@@ -89,7 +89,7 @@ class FormationStageController extends Controller
             );
         Alert::success('Success !', 'Record Updated succesfully');
             //redirecting to Parish List page
-            return Redirect()->route('admin.formationStage.index');
+            return Redirect()->back()   ;
     }
 
     public function destroy($id)

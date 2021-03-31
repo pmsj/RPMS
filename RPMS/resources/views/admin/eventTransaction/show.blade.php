@@ -15,7 +15,7 @@
                       <i class="fas fa-angle-double-right"></i>
                   </span>   
                   <small class="font-weight-bolder text-dark">
-                      Formation Details
+                      Priest's Event Details
                   </small>
                     <small class="text-muted">
                       (id-{{$user->id}})
@@ -24,7 +24,7 @@
             </h4>
           </div>
           <div class="col text-right">
-            <a href="{{route('admin.formationTransaction.index')}}" class="badge badge-pill badge-danger"><i class="fas fa-angle-double-left"></i><strong class=""> Go back</strong></a>
+            <a href="{{route('admin.eventTransaction.index')}}" class="badge badge-pill badge-danger"><i class="fas fa-angle-double-left"></i><strong class=""> Go back</strong></a>
           </div>
         </div>
       </div>
@@ -34,34 +34,30 @@
         <table class="table align-items-center text-white table-hover">
           <thead class="text-center bg-default m-0 p-0">
             <tr>  
-              <th>Formation Stage</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Concerned Authority</th>
+              <th>Event</th>
+              <th>Held On</th>
+              <th>Presided Over By</th>
               <th>Community</th>
-              <th>Community Mobile No</th>
-              <th>Address</th>
+              <th>Place</th>
             </tr>  
           </thead>
           <tbody>
-            @forelse ( $user->formationStages as $formationStage )
+            @forelse ( $user->events as $event )
                 <tr class="text-center text-default">
                   <td class="text-default font-weight-bolder" scope="col">
-                    <a href="{{route('admin.formationTransaction.edit', $formationStage->pivot->user_id)}}" 
-                      class="text-default btn btn-md badge badge-pill text-dark font-weight-bolder"
-                      data-toggle="tooltip" data-placement="right" title="Click to Edit Details">
-                      {{$formationStage->stage_name}}
+                    <a href="{{route('admin.eventTransaction.edit', $event->pivot->user_id)}}" 
+                        class="text-default btn btn-md badge badge-pill text-dark font-weight-bolder"
+                        data-toggle="tooltip" data-placement="right" title="Click to Edit Details">
+                      {{$event->event_name}}
                     </a>
                     <br class="">
-                    <small class="m-0 p-0"><span class="text-info">Created on</span> {{\Carbon\Carbon::parse($formationStage->pivot->created_at)->format('d-F-Y')}}</small>
-                  <small><span class="text-info">Updated on</span> {{\Carbon\Carbon::parse($formationStage->pivot->updated_at)->format('d-F-Y')}}</small>
+                    <small class="m-0 p-0"><span class="text-info">Created on</span> {{\Carbon\Carbon::parse($event->pivot->created_at)->format('d-F-Y')}}</small>
+                  <small><span class="text-info">Updated on</span> {{\Carbon\Carbon::parse($event->pivot->updated_at)->format('d-F-Y')}}</small>
                   </td>
-                  <td>{{ \Carbon\Carbon::parse($formationStage->pivot->start_date)->format('d-F-Y')}}</td>
-                  <td>{{ \Carbon\Carbon::parse($formationStage->pivot->end_date)->format('d-F-Y')}}</td>
-                  <td>{{$formationStage->pivot->concerned_authority}}</td>
-                  <td>{{$formationStage->communities->pluck('community_name')->first()}}</td> 
-                  <td>{{$formationStage->communities->pluck('mobile_number_community')->first()}}</td>
-                  <td>{{$formationStage->communities->pluck('addressline')->first()}}</td>
+                  <td>{{ \Carbon\Carbon::parse($event->pivot->held_on)->format('d-F-Y')}}</td>
+                  <td>{{$event->pivot->presided_over_by}}</td>
+                  <td>{{$event->communities->pluck('community_name')->first()}}</td> 
+                  <td>{{$event->pivot->place}}</td>
                 </tr>
           </tbody>  
             @empty

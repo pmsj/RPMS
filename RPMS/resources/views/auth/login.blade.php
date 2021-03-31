@@ -120,7 +120,7 @@
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
                     {{-- email input field --}}
-                    <input class="text-primary form-control  @error('email') is-invalid @enderror" id="email" type="email" name="email" placeholder="Email" required autofocus>
+                    <input class="text-primary form-control  @error('email') is-invalid @enderror" id="email" type="email" name="email" placeholder="Email" value="{{old('email')}}" required autofocus>
                     @error('email')
                     <span class="invalid-feedback is-invalid" role="alert">
                       {{$message}}
