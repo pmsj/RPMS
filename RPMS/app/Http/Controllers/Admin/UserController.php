@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\Fortify\CreateNewUser;
 use App\Http\Controllers\Controller;
 // use Illuminate\Support\Facades\Gate;
-// use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use RealRashid\SweetAlert\Facades\Alert;
 // use Mockery\Generator\StringManipulation\Pass\Pass;
 
@@ -21,7 +22,9 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.users.index', ['users' => User::paginate(10)]);
+        $users = User::paginate(10);
+        $RecycleBin = User::onlyTrashed()->latest()->paginate(10);
+        return view('admin.users.index',compact('users', 'RecycleBin'));
     }
 
 
@@ -41,7 +44,7 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
 
         // enable password reset link Here
-        // Password::sendResetLink($request->only(['email']));
+        Password::sendResetLink($request->only(['email']));
 
         Alert::success('Success !', 'New User Created Successfully.');
 
@@ -51,8 +54,16 @@ class UserController extends Controller
 
     public function show($id)
     {
-        //
+      
     }
+
+    //method departed() to show how many died or discontinued
+    public function departed()
+    {
+        $users = User::all();
+        $RecycleBin = User::onlyTrashed()->latest()->paginate(5);
+        return view('admin.report.departure.index',compact('RecycleBin', 'users'));
+    } 
 
 
     public function edit($id)
@@ -89,10 +100,28 @@ class UserController extends Controller
         return redirect(route('admin.users.index'));
     }
 
+    //Soft Delete
+
+    public function softDelete($id)
+    {
+        User::find($id)->delete();
+        Alert::success('Success !', ' User has been moved to Trash');
+        return redirect(route('admin.users.index'));
+    }
+
+    //restore User
+    public function restore($id)
+    {
+        //finddin the data with id and restoring
+        User::withTrashed()->find($id)->restore();
+        Alert::success('Success !', ' User restored Successfully');
+        return redirect(route('admin.users.index'));
+    }
+
 
     public function destroy($id)
     {
-        User::destroy($id);
+        User::onlyTrashed()->find($id)->forceDelete();
 
         Alert::success('Success !', ' User Deleted Successfully');
         return redirect(route('admin.users.index'));

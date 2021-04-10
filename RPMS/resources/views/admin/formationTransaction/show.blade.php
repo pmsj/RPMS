@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'Individual Formation Details')
 @section('admin')
 {{-- table row --}}
 <div class="row mt--5">
@@ -51,6 +52,9 @@
                       class="text-default btn btn-md badge badge-pill text-dark font-weight-bolder"
                       data-toggle="tooltip" data-placement="right" title="Click to Edit Details">
                       {{$formationStage->stage_name}}
+                      <small class="text-dark">
+                          ({{$formationStage->stage_duration}})
+                      </small>
                     </a>
                     <br class="">
                     <small class="m-0 p-0"><span class="text-info">Created on</span> {{\Carbon\Carbon::parse($formationStage->pivot->created_at)->format('d-F-Y')}}</small>

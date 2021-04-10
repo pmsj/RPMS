@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'My Profile')
 @section('admin')
 <div class="main-content" id="panel">  
     <!-- Header -->
@@ -119,7 +120,7 @@
               </div>
             </div>
           <div class="card-body">
-
+              {{-- user information update --}}
               <form method="POST" action="{{route('user-profile-information.update')}}">
                 @csrf
                 @method('put')
@@ -184,17 +185,16 @@
                     <div class="col-lg-12">  
                       <div class="form-group">
                         <label class="form-control-label" for="current_password" >Current Password</label>
-                        <input type="password" name="current_password"  id="current_password" class="form-control text-muted" placeholder="current password..."  
-                        @error('current_password') is-invalid @enderror >
+                        <input type="password" name="current_password"  id="current_password" class="form-control text-muted @error('current_password') is-invalid @enderror" placeholder="current password...">
                         @error('current_password')
                         <span class="text-danger text-small">{{ $message }}</span>
-                      @enderror
+                        @enderror
                       </div>
                   </div>  
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="password">New Password</label>
-                        <input type="password" name="password"  id="password" class="form-control text-muted" placeholder="New password...">
+                        <input type="password" name="password"  id="password" class="form-control text-muted @error('password') is-invalid @enderror"" placeholder="New password...">
                         @error('password')
                         <span class="text-danger text-small">{{ $message }}</span>
                       @enderror
@@ -203,7 +203,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="password_confirmation">Confirm Password</label>
-                        <input type="password" name="password_confirmation"  id="password_confirmation" class="form-control text-muted" placeholder="password_confirmation...">
+                        <input type="password" name="password_confirmation @error('password_confirmation') is-invalid @enderror""  id="password_confirmation" class="form-control text-muted" placeholder="password_confirmation...">
                         @error('password_confirmation')
                             <span class="text-danger text-small">{{ $message }}</span>
                             @enderror

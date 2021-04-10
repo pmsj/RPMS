@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'Personal Details')
 @section('admin')
 
       <div class="col-xl-9">
@@ -16,19 +17,8 @@
                 </div>
                 <div class="col text-right">
                   @isset($personalDetails) <!--if personalDetails, meaning no related record exist, it will through error-->
-                  <a href="{{route('user.personalDetail.edit', $personalDetails->id)}}" data-toggle="tooltip" data-placement="top" title="Click to Edit Personal Details" <i class="fas fa-edit mr-2 text-default h3"></i></a>
-                  <a href="{{ route('user.personalDetail.destroy', $personalDetails->id)}} " data-toggle="tooltip" data-placement="top" title="Delete Personal Details"
-                             onclick="event.preventDefault();
-                            if(confirm('Are you sure to delete it ?'))
-                            {
-                            document.getElementById('delete-personalDetail-from-{{$personalDetails->id}}').submit()
-                            } 
-                            "><i class="fas fa-trash-alt text-danger h3"></i></i>
-                          </a>
-                          <form id="delete-personalDetail-from-{{$personalDetails->id}}" action="{{route('user.personalDetail.destroy', $personalDetails->id)}}" method="POST" style="display:none">
-                            @csrf
-                            @method("DELETE")
-                            </form>
+                  {{-- delete button --}}
+                  <a href="{{route('user.personalDetail.edit', $personalDetails->id)}}" data-toggle="tooltip" data-placement="top" title="Click to Edit Personal Details" <i class="fas fa-edit mr-2 text-dark h3"></i></a>
                   @endisset
                 </div>
               </div>
@@ -103,7 +93,7 @@
                       <div class="row">
                         <div class="col-lg-12 col-md-10">
                           <h3 class="display-2 text-white">No Personal Details Found !</h3>
-                          <p class="text-white mt-0 mb-5 ">Please fill in your personal details.</p>
+                          <p class="text-white mt-0 mb-5 ">Click the plus icon => <span class="text-yellow font-weight-bolder">(+) </span> above to add personal details.</p>
                         </div>
                       </div>
                     </div>

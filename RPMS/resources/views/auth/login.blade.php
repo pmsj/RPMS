@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Landing-page | login</title>
+  <title>Login page</title>
   <!-- Favicon -->
   <link rel="icon" href="{{asset('backend1/assets/img/brand/ran_circle.PNG')}}" type="image/png">
   <!-- Fonts -->
@@ -80,7 +80,7 @@
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
               <h2 class="text-white">Welcome !</h2>
-              <p class="text-lead text-light">| We are glade, you are here | </p>
+              <p class="text-lead text-light">| We are glad, you are here | </p>
             </div>
           </div>
         </div>

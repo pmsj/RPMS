@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 class LoginPageTest extends TestCase
 {
     public function test_user_can_login_using_the_login_form()
@@ -37,11 +38,14 @@ class LoginPageTest extends TestCase
     
     public function test_user_can_access_admin_page()
     {
+        DB::table('roles')->insert([
+            'role_name' => 'Admin'
+        ]);
+        
         $user = User::factory()->create();
-
         $user->roles()->attach(1);
 
-        $response = $this->post('/login',[
+        $this->post('/login',[
             'emai' => $user->email,
             'password' => 'password'
         ]);

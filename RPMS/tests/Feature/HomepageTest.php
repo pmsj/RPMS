@@ -13,11 +13,13 @@ class HomepageTest extends TestCase
      *
      * @return void
      */
-    public function test_homepage_loads()
+    public function test_user_and_admin_are_redirected_to_dashboard_when_logged_in()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
+
+        $response->assertSeeText('A Jesuit Province in South Asia Assistancy');
     }
 }
     

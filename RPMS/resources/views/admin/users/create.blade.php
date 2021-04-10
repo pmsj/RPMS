@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'Create New User')
 @section('admin')
 <div class="container-fluid mt--4">
     <div class="row">

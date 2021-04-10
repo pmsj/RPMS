@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\District;
+use App\Models\Backend\District;
 use Illuminate\Database\Seeder;
 
 class DistrictSeeder extends Seeder
@@ -15,6 +15,8 @@ class DistrictSeeder extends Seeder
      */
     public function run()
     {
+       
+        
         DB::table('district')->insert([
             'district_name' => 'Gumla'
         ]);
@@ -31,15 +33,36 @@ class DistrictSeeder extends Seeder
             'district_name' => 'Lohardaga'
         ]);
         DB::table('district')->insert([
-            'district_name' => 'Chennai'
+            'district_name' => 'Palamu'
         ]);
         DB::table('district')->insert([
-            'district_name' => 'Trichy'
+            'district_name' => 'Dumka'
         ]);
        
         DB::table('district')->insert([
-            'district_name' => 'Kazakuttam'
+            'district_name' => 'Godda'
         ]);
+
+        DB::table('district')->insert([
+            'district_name' => 'Tiruchirappalli'
+        ]);
+        DB::table('district')->insert([
+            'district_name' => 'Chennai'
+        ]);
+        DB::table('district')->insert([
+            'district_name' => 'Guntur'
+        ]);
+
+        DB::table('district')->insert([
+            'district_name' => 'Visakhapatnam'
+        ]);
+        DB::table('district')->insert([
+            'district_name' => 'Bijapur'
+        ]);
+        DB::table('district')->insert([
+            'district_name' => 'Chitradurga'
+        ]);
+       
        
     }
 }

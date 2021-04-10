@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'Roles')
 @section('admin')
 {{-- table row --}}
 <div class="row mt--5">

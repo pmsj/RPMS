@@ -31,7 +31,14 @@ class PersonalDetailController extends Controller
     public function create()
     {
         $user_id = auth()->user()->id;
+        // $personalDetails = PersonalDetail::pluck('user_id')->first();
+        // if()
+        // {
+        //     Alert::warning("Alert","You've already added your Personal Details !");
+        //     return redirect()->route('user.personalDetail.index');
+        // }
         $user = User::find($user_id);
+
             $personalDetails = $user->personalDetail;
             $countries =  Country::select('id', 'country_name')->get();
             $districts =  District::select('id', 'district_name')->get();
@@ -144,10 +151,10 @@ class PersonalDetailController extends Controller
      }
 
      //delete record
-     public function destroy($id)
-     {
-         PersonalDetail::find($id)->delete();
-        Alert::success('Success !', ' Personal Details Deleted Successfully');
-         return redirect()->route('user.personalDetail.index');
-     }
+    //  public function destroy($id)
+    //  {
+    //      PersonalDetail::find($id)->delete();
+    //     Alert::success('Success !', ' Personal Details Deleted Successfully');
+    //      return redirect()->route('user.personalDetail.index');
+    //  }
 }

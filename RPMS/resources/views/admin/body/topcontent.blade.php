@@ -17,7 +17,7 @@
                     <span class="btn-inner--icon"><img src="{{asset('backend1/assets/img/brand/ran_circle.png')}}" style="width:30px"></span>
                   <span class="h4 text-primary">Ranchi Province Management System</span>
                 </a>
-                <p class="mt-1"><small class="btn-inner--text text-secondary">A Jesuit Province in South Asia Assistancy</small></p>
+                <p class="mt-1"><small class="btn-inner--text text-secondary"></small></p>
                 </div>
               </div>
             </div>

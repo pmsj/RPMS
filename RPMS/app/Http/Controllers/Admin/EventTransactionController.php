@@ -20,7 +20,7 @@ class EventTransactionController extends Controller
     {
         $event = Event::first();
         // dd($event);
-        $users = $event->users;
+        $users = $event->users()->paginate(15);
         return view('admin.eventTransaction.index', compact([
             'users',
         ]));
@@ -28,9 +28,9 @@ class EventTransactionController extends Controller
 
     public function create()
     {
-        $events = Event::all();
-        $users = User::all();
-        $communities = Community::all();
+        $events = Event::orderBy('id', 'asc')->get();
+        $users = User::orderBy('first_name', 'asc')->get();
+        $communities = Community::orderBy('community_name', 'asc')->get();
 
         return view('admin.eventTransaction.create', compact(['events', 'users', 'communities']));
     }
@@ -73,11 +73,17 @@ class EventTransactionController extends Controller
             return redirect()->route('admin.eventTransaction.index');
         }
 
-        $communitiy = Community::OrderBy('community_name', 'asc')->paginate(10);
+        // $communitiy = Community::OrderBy('community_name', 'asc')->paginate(10);
 
         // $communities = $user->communityEvents;
         return view('admin.eventTransaction.show', compact(['user']));
     }
+
+    public function edit()
+    {
+       
+    }
+
 
 
 }

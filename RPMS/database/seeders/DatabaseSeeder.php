@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
         $this->call(UserSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(RoleUserSeeder::class);
@@ -21,9 +21,14 @@ class DatabaseSeeder extends Seeder
         $this->call(StateSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(PersonalDetailSeeder::class);
+        $this->call(DesignationSeeder::class);
         $this->call(FormationStageSeeder::class);
         $this->call(CommunitySeeder::class);
         $this->call(EventSeeder::class);
+        $this->call(ProvinceSeeder::class);
+
+        // $this->call(FormationStageTransactionSeeder::class);
+        // $this->call(EventTransactionSeeder::class);
 
     }
 }

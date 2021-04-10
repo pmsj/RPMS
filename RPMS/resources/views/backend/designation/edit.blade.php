@@ -40,7 +40,7 @@
                       </div>
                     {{-- submit button and cancle button --}}
                         <button type="submit" class="btn btn-sm btn-primary">Update</button>
-                        <a href="{{route('admin.designation.index')}}" class="btn btn-sm btn-info">Cancle</a>                   
+                        <a href="{{route('admin.designation.index')}}" class="btn btn-sm btn-info">Cancel</a>                   
                   </div>
                 </div>
               </div>

@@ -27,7 +27,7 @@ class FormationTransactionController extends Controller
     public function index()
     {
         $formationStage = Formation_stage::first();
-        $users = $formationStage->users;
+        $users = $formationStage->users()->paginate(15);
         return view('admin.formationTransaction.index', compact([
             'users',
             'formationStage'
@@ -42,9 +42,9 @@ class FormationTransactionController extends Controller
      */
     public function create()
     {
-        $formationStages = Formation_stage::all();
-        $users = User::all();
-        $communities = Community::all();
+        $formationStages = Formation_stage::orderBy('id', 'asc')->get() ;
+        $users = User::orderBy('first_name', 'asc')->get();
+        $communities = Community::orderBy('community_name', 'asc')->get();
         
         return view('admin.formationTransaction.create', compact(['formationStages', 'users', 'communities']));
     }

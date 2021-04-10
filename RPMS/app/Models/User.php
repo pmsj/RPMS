@@ -12,6 +12,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\SoftDeletes; //soft delete
 
 class User extends Authenticatable // default
 // class User extends Authenticatable implements MustVerifyEmail
@@ -21,12 +22,14 @@ class User extends Authenticatable // default
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+    protected $dates = ['deleteda_at'];
     protected $fillable = [
         'first_name',
         'middle_name',
@@ -165,34 +168,17 @@ class User extends Authenticatable // default
 
     //-----------------------Appointments--------------------------------------
 
-    public function ministries()
-    {
-        return $this->belongsToMany('App\Models\Backend\Ministry', 'appointments')
-        ->withPivot('institution_id','parish_id','start_date','end_date','remarks', 'community_id','created_at', 'updated_at');
-        
-    }
-
-    public function institutions()
-    {
-        return $this->belongsToMany('App\Models\Backend\Institution', 'appointments')
-        ->withPivot('ministry_id','parish_id','start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
-    }
-
-    public function parishes()
-    {
-        return $this->belongsToMany('App\Models\Backend\Parish', 'appointments', 'user_id', 'designation_id')
-        ->withPivot('ministry_id', 'institution_id','start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
-    }
-
     public function designations()
     {
-        return $this->belongsToMany('App\Models\Backend\Designation', 'appointments')
-        ->withPivot('user_id','ministry_id', 'institution_id', 'parish_id','start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
+        return $this->belongsToMany('App\Models\Backend\Designation', 'appointments',)
+        ->withPivot('ministry', 'institution_parish_office','start_date', 'end_date', 'comment','community_id','created_at', 'updated_at')
+        ->orderBy('start_date', 'Desc');
     }
 
     public function communityAppointements()
     {
-        return $this->belongsToMany('App\Models\Backend\Community', 'appointments', 'user_id', 'designation_id')
-        ->withPivot('start_date', 'end_date', 'remarks', 'community_id', 'created_at', 'updated_at');
+        return $this->belongsToMany('App\Models\Backend\Community', 'appointments')
+        ->withPivot('ministry', 'designation_id', 'institution_parish_office', 'start_date', 'end_date', 'comment', 'created_at', 'updated_at');
+        
     }
 }

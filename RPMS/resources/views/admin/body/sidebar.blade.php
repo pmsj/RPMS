@@ -20,20 +20,37 @@
               </strong>
               </a>
           </li>
-     @can('is-Admin')
+           {{-- dashboard link --}}
           <li class="nav-item">
             <a class="nav-link" href="{{route('dashboard')}}">
               <i class="ni ni-chart-pie-35 text-primary"></i>
               <span class="nav-link-text">Dashboard</span>
             </a>
           </li>
+           {{-- User profile link --}}
           <li class="nav-item">
-            <a class="nav-link" href="examples/icons.html">
-              <i class="fas fa-users"></i>
-              <span class="nav-link-text">Personnel Management</span>
+            <a class="nav-link" href="{{route('user.profile')}}">
+              <i class="ni ni-single-02 text-info"></i>
+              <span class="nav-link-text">My Profile</span>
             </a>
           </li>
-      @endcan
+          {{-- User Personal details --}}
+          <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#auth3" aria-expanded="false" aria-controls="auth3">
+                <span class="menu-icon">
+                  <i class="mdi mdi-security"></i>
+                </span>
+                <i class="fas fa-users-cog text-warning"></i>
+                <span class="menu-title">Personal Details</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth3">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{route('user.personalDetail.index')}}"><i class="far fa-eye text-warning"></i>View P. Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('user.personalDetail.create')}}"><i class="fas fa-user-plus text-warning"></i>Add P. Details</a></li>
+                </ul>
+              </div>
+          </li>
           {{-- HR management --}}
     @can('is-admin')    
           <li class="nav-item menu-items">
@@ -43,7 +60,7 @@
               </span>
               <i class="ni ni-archive-2 text-info"></i>
               {{-- basic details entries --}}
-              <span class="menu-title">HR Basic Entries</span>
+              <span class="menu-title"> Basic Entries</span>
               <i class="menu-arrow text-info"></i>
             </a>
             <div class="collapse" id="HrBasicEntries">
@@ -100,32 +117,6 @@
               </ul>
             </div>
           </li>
-          @endcan
-          {{-- suer profile link --}}
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('user.profile')}}">
-              <i class="ni ni-single-02 text-info"></i>
-              <span class="nav-link-text">My Profile</span>
-            </a>
-          </li>
-          {{-- personal data link --}}
-          <li class="nav-item menu-items">
-              <a class="nav-link" data-toggle="collapse" href="#auth3" aria-expanded="false" aria-controls="auth3">
-                <span class="menu-icon">
-                  <i class="mdi mdi-security"></i>
-                </span>
-                <i class="fas fa-users-cog text-warning"></i>
-                <span class="menu-title">Personal Details</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="auth3">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{route('user.personalDetail.index')}}"><i class="far fa-eye text-warning"></i>View P. Details</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{route('user.personalDetail.create')}}"><i class="fas fa-user-plus text-warning"></i>Add P. Details</a></li>
-                </ul>
-              </div>
-          </li>
-          @can('is-admin')
           {{-- Formation Stage Data --}}
            <li class="nav-item menu-items">
               <a class="nav-link" data-toggle="collapse" href="#auth4" aria-expanded="false" aria-controls="auth4">
@@ -166,7 +157,7 @@
                 <span class="menu-icon">
                   <i class="mdi mdi-security"></i>
                 </span>
-                <i class="fas fa-pray text-primary font-weight-bolder"></i>
+                <i class="fas fa-calendar-check text-red"></i>
                 <span class="menu-title">Appointments</span>
                 <i class="menu-arrow"></i>
               </a>
@@ -174,6 +165,23 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{route('admin.appointment.index')}}"><i class="far fa-eye text-warning"></i>View Appointments</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('admin.appointment.create')}}"><i class="fas fa-user-plus text-warning"></i>Make Appointment</a></li>
+                </ul>
+              </div>
+          </li>
+          {{-- Report --}}
+          <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#auth7" aria-expanded="false" aria-controls="auth7">
+                <span class="menu-icon">
+                  <i class="mdi mdi-security"></i>
+                </span>
+                <i class="fas fa-book text-dark"></i>
+                <span class="menu-title">Report</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth7">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item"> <a class="nav-link" href="{{route('admin.search')}}"><i class="far fa-eye text-warning"></i>Admission</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{route('admin.user.departed')}}"><i class="fas fa-book-dead text-primary"></i>All Departures</a></li>
                 </ul>
               </div>
           </li>

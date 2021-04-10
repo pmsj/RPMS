@@ -27,16 +27,12 @@
               <th scope="col">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            @php $i = 1 @endphp
+          <tbody class="">
                 @foreach ($designation as $row)
                     <tr>
-                    {{-- <td>{{$row->id}}</td> ---> This is real id number inside parish table--}}
-                        <td>{{$i++}}</td>
+                        <td>{{$row  ->id}}</td>
                         <td>{{$row->designation_name}}</td>
                         <td>{{$row->designation_abbreviation}}</td>
-                    {{-- <td>{{$row->created_at}}</td>
-                    <td>{{$row->updated_at}}</td> --}}
                         <td><a href="{{ route('admin.designation.edit', $row->id) }}" class="btn btn-warning btn-sm">edit</i></a>
                             <a href="{{ route('admin.designation.destroy', $row->id) }}" class="btn btn-danger btn-sm"
                               onclick="event.preventDefault();
@@ -68,6 +64,7 @@
               </div>
              @endif 
         </table>
+        {{$designation->links()}}
       </div>
     </div>
   </div>

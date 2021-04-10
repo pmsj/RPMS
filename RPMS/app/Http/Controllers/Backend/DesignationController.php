@@ -17,12 +17,8 @@ class DesignationController extends Controller
    
    public function index()
    {
-       $designation = Designation::orderBy('designation_name','asc')->get();
-   //----pagination---------
-   // $designation =  DB::table('designation')
-   // ->latest()
-   // ->paginate(5);
-   //-----------------------
+       $designation = Designation::orderBy('id','asc')->paginate(10);
+   
 
       return view('backend.designation.index', compact('designation')); 
    }

@@ -44,18 +44,26 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // CUSTOM password reset email view
-        Fortify::resetPasswordView(function ($request) {
-            return view('auth.reset-password', ['request' => $request]);
-        });
+       
 
         // Fortify::verifyEmailView(function (){
         //     return view(view('auth.verify-email'));
         // });
 
+        
+        //fortyfy to know where to find login view
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
+
         //password rest link
         Fortify::requestPasswordResetLinkView(function () {
             return view('auth.forgot-password');
+        });
+
+        // CUSTOM password reset email view
+        Fortify::resetPasswordView(function ($request) {
+            return view('auth.reset-password', ['request' => $request]);
         });
     }
 }

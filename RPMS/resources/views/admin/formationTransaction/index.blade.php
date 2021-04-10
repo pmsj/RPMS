@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'Formation Details')
 @section('admin')
 {{-- table row --}}
 <div class="row mt--5">
@@ -26,16 +27,16 @@
         <!-- Projects table -->
       @if(count($users) > 0)
         <table class="table align-items-center text-dark table-hover">
-          <thead class="text-center bg-default text-white">
+          <thead class="bg-default text-white">
             <tr>  
               <th>Name</th>
               <th>Formation Stage</th>
               <th>More Details</th>
             </tr>  
           </thead>
-          <tbody>
+          <tbody class="">
              @foreach($users as $user)
-                <tr class="text-center">
+                <tr class="">
                   <td class="text-default font-weight-bolder" scope="col">
                     <a href="{{route('admin.formationTransaction.show', $user->pivot->user_id)}}"  
                       data-toggle="tooltip" data-placement="top" title="Click to see more"
@@ -67,6 +68,7 @@
                 @endforeach 
           </tbody>  
         </table>
+        {{$users->links()}}
       @else  
           <div class="header pb-6 d-flex align-items-center" >
           <!-- Mask -->

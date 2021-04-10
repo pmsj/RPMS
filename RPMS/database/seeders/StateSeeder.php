@@ -18,7 +18,39 @@ class StateSeeder extends Seeder
         ]);
 
         DB::table('state')->insert([
-            'state_name' => 'Andhara Pradesh',
+            'state_name' => 'Assam',
+        ]);
+
+        DB::table('state')->insert([
+            'state_name' => 'Bihar',
+        ]);
+
+        DB::table('state')->insert([
+            'state_name' => 'Gujarat',
+        ]);
+        DB::table('state')->insert([
+            'state_name' => 'Mumbai',
+        ]);
+
+
+        DB::table('state')->insert([
+            'state_name' => 'Chhattisgarh',
+        ]);
+
+        DB::table('state')->insert([
+            'state_name' => 'Goa',
+        ]);
+
+        DB::table('state')->insert([
+            'state_name' => 'Haryana',
+        ]);
+
+
+        DB::table('state')->insert([
+            'state_name' => 'Karnataka',
+        ]);
+        DB::table('state')->insert([
+            'state_name' => 'Kerala',
         ]);
 
         DB::table('state')->insert([
@@ -26,10 +58,10 @@ class StateSeeder extends Seeder
         ]);
 
         DB::table('state')->insert([
-            'state_name' => 'Kernataka',
+            'state_name' => 'Telangana',
         ]);
         DB::table('state')->insert([
-            'state_name' => 'Mumbai',
+            'state_name' => 'West Bengal',
         ]);
     }
 }

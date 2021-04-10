@@ -1,4 +1,5 @@
 @extends('admin.admin_master')
+@section('title', 'Edit personal Details')
 @section('admin')
 @if(Auth::user()->id == $personalDetails->user_id) 
 <div class="container-fluid mt--4">

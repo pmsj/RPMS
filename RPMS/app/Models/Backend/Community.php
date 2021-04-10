@@ -80,4 +80,18 @@ class Community extends Model
         ->withPivot('held_on', 'presided_over_by', 'user_id', 'place', 'created_at', 'updated_at')
         ->orderBy('id');
     }
+
+    //--------------------------------appointments-------------------------------
+
+    public function userAppointments()
+    {
+        return $this->belongsToMany('App\Models\User', 'appointments')
+        ->withPivot('ministry', 'designation_id','institution_parish_office', 'start_date', 'end_date', 'comment', 'created_at', 'updated_at');
+    }
+
+    public function designations()
+    {
+        return $this->belongsToMany('App\Models\Backend\Designation', 'appointments')
+        ->withPivot('user_id', 'ministry', 'institution_parish_office', 'start_date', 'end_date', 'comment', 'created_at', 'updated_at');
+    }
 }
