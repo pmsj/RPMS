@@ -8,22 +8,21 @@
       <div class="card-header border-0 bg-danger">
         <div class="row align-items-center">
           <div class="col">
-            <a href="{{route('admin.search')}}" class=" btn-default btn-sm badge badge-pill  display-inline-block"><i class="fas fa-angle-double-left"></i> Back</a>
-            <h3 class="mb-0 float-right text-white">Search Result for  <i class="fas fa-angle-double-right"></i> <span class="font-weight-bolder">{{$year}}</span></h3>
+            <h3 class="mb-0 float-right text-white">Admission Report for <i class="fas fa-angle-double-right"></i> <span class="font-weight-bolder">{{Carbon\Carbon::now()->year}}</span></h3>
           </div>
           <div class="col text-right">
-            <a href="#!" class="btn-primary badge badge-sm badge-pill">Total : <span class="badge badge-sm badge-circle badge-floating badge-secondary border-white">{{count( $users)}}</span></a>
+            <a href="#!" class="btn-primary badge badge-sm badge-pill">Total : <span class="badge badge-sm badge-circle badge-floating badge-secondary border-white">{{$currentYearAdmissions->total()}}</span></a>
           </div>
         </div>
       </div>
       <div class="table-responsive ">
         <!-- Projects table -->
-        @if(count($users) > 0)
+        @if(count($currentYearAdmissions) > 0)
         <table class="table align-items-center table-hover mb-3">
           <thead class="thead-light font-weight-bolder text-center">
             <tr>
               {{-- <th scope="col">No.</th> --}}
-              <th scope="col">User Id</th>
+              <th scope="col">S.No</th>
               <th scope="col">First Name</th>
               <th scope="col">Middle Name</th>
               <th scope="col">Last Name</th>
@@ -32,9 +31,9 @@
             </tr>
           </thead>
           <tbody class="text-center">
-                @foreach ($users as $user)
+                @foreach ($currentYearAdmissions as $user)
                     <tr>
-                        <td>{{$user->id}}</td>
+                        <td>{{$currentYearAdmissions->firstItem()+$loop->index}}</td>
                         <td>{{$user->first_name}}</td>
                         <td>{{$user->middle_name}}</td>
                         <td>{{$user->sur_name}}</td>
@@ -51,7 +50,7 @@
                 <div class="container-fluid d-flex align-items-center">
                   <div class="row">
                     <div class="col-lg-12 col-md-10 mt-4">
-                      <h1 class="display-4 text-white">Sorry ! </span> No detials found for the year {{$year}}</h1>
+                      <h1 class="display-4 text-white">Sorry ! </span> No detials found for the current year admission </h1>
                       <p class="text-white mt-0 mb-5">No Novice admitted in this year.</p>
                     </div>
                   </div>
@@ -59,7 +58,7 @@
               </div>
              @endif 
         </table>
-        {{$users->links()}}
+        {{$currentYearAdmissions->links()}}
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ use App\Models\User;
 use App\Models\Backend\Community;
 use App\Models\Backend\Designation;
 use App\Http\Controllers\Controller;
-use App\Models\Appointment;
+use App\Models\User_appointment;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -22,23 +22,26 @@ class AppointmentController extends Controller
 
         $designations = Designation::first();
         $users = $designations->users;
-    
+
         return view('admin.appointment.index', compact([
-            'users',
+            'users', 
         ]));
-        
+
+        // $designations = Designation::with('users')->findOrFail([1, 2]);
+        // $users = collect([]);
+        // foreach ($designations as $designation) {
+        //     $users = $users->merge($designation->recipes);
+        // }
+        // return view('admin.appointment.index')->with('users', $users);
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        $users = User::all();
-        $communities = Community::all();
-        $designations = Designation::all();
+        $users = User::orderBy('first_name', 'asc')->get();
+        $communities = Community::orderBy('community_name', 'asc')->get();
+        $designations = Designation::orderBy('designation_name', 'asc')->get();
 
         return view('admin.appointment.create', compact(['users', 'communities', 'designations']));
     }
@@ -61,7 +64,7 @@ class AppointmentController extends Controller
             ],
         );
         //insert data
-        Appointment::insert([
+        User_appointment::insert([
             'user_id' => $request->user_id,
             'ministry' =>  $request->ministry,
             'designation_id' => $request->designation_id,
@@ -77,12 +80,7 @@ class AppointmentController extends Controller
         return Redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $user = User::find($id);
@@ -99,35 +97,19 @@ class AppointmentController extends Controller
         return view('admin.appointment.show', compact(['user', 'communities']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //

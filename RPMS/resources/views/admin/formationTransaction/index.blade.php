@@ -19,7 +19,7 @@
             <i class="fas fa-plus-circle"></i>
           </a>
           <div class="col text-right">
-            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-md badge-circle badge-floating badge-secondary border-white"></span></a>
+            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-sm badge-circle badge-floating badge-secondary border-white">{{$users->total()}}</span></a>
           </div>
         </div>
       </div>
@@ -28,7 +28,8 @@
       @if(count($users) > 0)
         <table class="table align-items-center text-dark table-hover">
           <thead class="bg-default text-white">
-            <tr>  
+            <tr> 
+              <th>S.No</th>
               <th>Name</th>
               <th>Formation Stage</th>
               <th>More Details</th>
@@ -37,6 +38,7 @@
           <tbody class="">
              @foreach($users as $user)
                 <tr class="">
+                  <td>{{$users->firstItem()+$loop->index}}</td>
                   <td class="text-default font-weight-bolder" scope="col">
                     <a href="{{route('admin.formationTransaction.show', $user->pivot->user_id)}}"  
                       data-toggle="tooltip" data-placement="top" title="Click to see more"

@@ -76,7 +76,7 @@
           <div class="container-fluid d-flex align-items-center">
             <div class="row">
               <div class="col-lg-12 col-md-10">
-                <h3 class="display-4 text-white">Appointment list if empty!</h3>
+                <h3 class="display-4 text-white">Appointment list is empty!</h3>
                 <p class="text-white mt-0 mb-5">Please Enter Appointment details.</p>
               </div>
             </div>

@@ -61,11 +61,6 @@
               <span class="nav-link-inner--text"><i class="ni ni-key-25"></i>Login</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{route('register')}}" class="nav-link">
-              <span class="nav-link-inner--text"><i class="ni ni-circle-08"></i>Register</span>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
@@ -73,7 +68,7 @@
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-5 pt-lg-9">
+    <div class="header bg-gradient-primary py-7 py-lg-5 pt-lg-6">
         {{-- <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9"> --}}
       <div class="container">
         <div class="header-body text-center mb-7">
@@ -95,7 +90,7 @@
     <div class="container mt--8 pb-5">
       <!-- Table -->
       <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
+        <div class="col-lg-5 col-md-8">
           <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent pb-5">
               {{-- <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div> --}}
@@ -106,6 +101,11 @@
                 </a>
                 <p class="mt-2"><small class="btn-inner--text">A Jesuit Provinec in south Asia Assistancy</small></p>
               </div>
+               @if(session('status'))
+                  <div class="alert alert-success" role="alert">
+                    {{session('status')}}
+                  </div>
+                @endif
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-primary mb-4">
@@ -122,7 +122,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="text-primary form-control  @error('email') is-invalid @enderror" placeholder="Email" id="email" type="email" name="email" value="{{$request->email}}" required />
+                    <input class="text-primary form-control  @error('email') is-invalid @enderror" placeholder="Email" id="email" type="email" name="email" value="{{$request->email}}"/>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                       {{$message}}
@@ -136,7 +136,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="text-primary form-control  @error('password') is-invalid @enderror" placeholder="Password" id="password"  type="password" name="password" required autocomplete="new-password" />
+                    <input class="text-primary form-control  @error('password') is-invalid @enderror" placeholder="Password" id="password"  type="password" name="password"  autocomplete="new-password" />
                     @error('password')
                     <span class="invalid-feedback" role="alert">
                       {{$message}}
@@ -150,7 +150,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control text-primary" placeholder="Confirm Password" id="password_confirmation"  type="password" name="password_confirmation" required />
+                      <input class="form-control text-primary" placeholder="Confirm Password" id="password_confirmation"  type="password" name="password_confirmation" />
                     </div>
                   </div>
                 <div class="col-12 display-inline-block">

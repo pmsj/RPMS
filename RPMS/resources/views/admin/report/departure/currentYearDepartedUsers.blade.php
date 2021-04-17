@@ -8,20 +8,16 @@
       <div class="card-header border-0 bg-dark">
         <div class="row align-items-center">
           <div class="col">
-            <h3 class="mb-0 float-right text-white font-weight-bolder">Departed Users List 
-                 <span class="badge badge-sm badge-circle  badge-secondary border-white">{{$RecycleBin->total()}}</span>
+            <h3 class="mb-0 float-right text-white font-weight-bolder">List of Departed users of the year <span class="text-warning font-weight-bolder"> {{Carbon\Carbon::now()->year}}</span> 
+                 <span class="badge badge-sm badge-circle  badge-secondary border-white">{{$currentYearDepartedUsers->total()}}</span>
             </h3>
           </div>
           <div class="col text-right">
-           
-          </div>
-          <div class="mt-2">
-            <input class="form-control d-block" id="myInput" type="text" placeholder="Search table here...">
           </div>
         </div>
       </div>
       <div class="table-responsive ">
-         @if(count($RecycleBin) > 0)
+         @if(count($currentYearDepartedUsers) > 0)
         <!-- Projects table -->
         <table class="table align-items-center table-hover mb-3">
           <thead class="thead-light font-weight-bolder">
@@ -36,15 +32,15 @@
             </tr>
           </thead>
           <tbody class="" id="myTable">
-                @foreach ($RecycleBin as $trash)
+                @foreach ($currentYearDepartedUsers as $currentYearDepartedUser)
                     <tr>
-                        <td>{{$RecycleBin->firstItem()+$loop->index}}</td>
-                        <td>{{$trash->first_name}}</td>
-                        <td>{{$trash->middle_name}}</td>
-                        <td>{{$trash->sur_name}}</td>
-                        <td>{{$trash->email}}</td>
-                        <td>{{implode(', ', $trash  ->roles()->get()->pluck('role_name')->toArray())}}</td>
-                        <td>{{\Carbon\Carbon::parse($trash->deleted_at)->format('d-F-Y')}}</td>
+                        <td>{{$currentYearDepartedUsers->firstItem()+$loop->index}}</td>
+                        <td>{{$currentYearDepartedUser->first_name}}</td>
+                        <td>{{$currentYearDepartedUser->middle_name}}</td>
+                        <td>{{$currentYearDepartedUser->sur_name}}</td>
+                        <td>{{$currentYearDepartedUser->email}}</td>
+                        <td>{{implode(', ', $currentYearDepartedUser  ->roles()->get()->pluck('role_name')->toArray())}}</td>
+                        <td>{{Carbon\Carbon::parse($currentYearDepartedUser->deleted_at)->format('d-F-Y')}}</td>
                     </tr>
                   @endforeach    
           </tbody>
@@ -62,7 +58,7 @@
                 </div>
               </div>
             @endif            
-        {{$RecycleBin->links()}}
+        {{$currentYearDepartedUsers->links()}}
       </div>
     </div>
   </div>  

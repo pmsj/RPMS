@@ -16,14 +16,14 @@ class Designation extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'appointments')
-        ->withPivot('ministry','institution_parish_office', 'start_date', 'end_date','comment','community_id', 'created_at', 'updated_at');
+        return $this->belongsToMany('App\Models\User', 'user_appointments')
+        ->withPivot('community_id','ministry','institution_parish_office', 'start_date', 'end_date', 'comment','created_at', 'updated_at');
     }
 
     public function communities()
     {
-        return $this->belongsToMany('App\Models\Backend\Community', 'appointments')
-        ->withPivot('user_id','ministry','institution_parish_office', 'start_date', 'end_date', 'comment','created_at', 'updated_at');
+        return $this->belongsToMany('App\Models\Backend\Community', 'user_appointments')
+        ->withPivot('user_id','institution_parish_office', 'start_date', 'end_date', 'comment','created_at', 'updated_at');
     }
 
 }

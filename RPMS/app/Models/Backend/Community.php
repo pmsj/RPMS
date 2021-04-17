@@ -85,13 +85,13 @@ class Community extends Model
 
     public function userAppointments()
     {
-        return $this->belongsToMany('App\Models\User', 'appointments')
+        return $this->belongsToMany('App\Models\User', 'user_appointments')
         ->withPivot('ministry', 'designation_id','institution_parish_office', 'start_date', 'end_date', 'comment', 'created_at', 'updated_at');
     }
 
     public function designations()
     {
-        return $this->belongsToMany('App\Models\Backend\Designation', 'appointments')
+        return $this->belongsToMany('App\Models\Backend\Designation', 'user_appointments')
         ->withPivot('user_id', 'ministry', 'institution_parish_office', 'start_date', 'end_date', 'comment', 'created_at', 'updated_at');
     }
 }

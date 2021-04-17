@@ -47,13 +47,13 @@
                 </div>
               </div>
               <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                <div class="d-flex justify-content-between">
+                {{-- <div class="d-flex justify-content-between">
                   <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
                   <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-                </div>
+                </div> --}}
               </div>
               <div class="card-body pt-0 pt-md-4">
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col">
                     <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                       <div>
@@ -70,7 +70,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> --}}
               {{-- User Card and pictrure --}}
                 <div class="text-center">
                   <h3 class="text-default font-weight-bolder">
@@ -176,6 +176,11 @@
               
               </form>
    {{-- Update Password --}}
+               @if(session('status'))
+                  <div class="alert alert-success" role="alert">
+                    {{session('status')}}
+                  </div>
+                @endif
             <form method="POST"  action="{{route('user-password.update')}}">
                 @csrf
                 @method('put')

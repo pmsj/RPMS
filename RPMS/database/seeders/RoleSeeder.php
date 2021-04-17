@@ -21,13 +21,13 @@ class RoleSeeder extends Seeder
             'role_name' => 'Admin'
         ]);
 
-        DB::table('roles')->insert([
-            'role_name' => 'Socius'
-        ]);
+        // DB::table('roles')->insert([
+        //     'role_name' => 'Socius'
+        // ]);
 
-        DB::table('roles')->insert([
-            'role_name' => 'NoviceMaster'
-        ]);
+        // DB::table('roles')->insert([
+        //     'role_name' => 'NoviceMaster'
+        // ]);
 
         DB::table('roles')->insert([
             'role_name' => 'User'

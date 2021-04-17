@@ -19,8 +19,7 @@ class EventTransactionController extends Controller
     public function index()
     {
         $event = Event::first();
-        // dd($event);
-        $users = $event->users()->paginate(15);
+        $users = $event->users()->paginate(10);
         return view('admin.eventTransaction.index', compact([
             'users',
         ]));

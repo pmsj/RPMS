@@ -15,7 +15,7 @@ class userSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->times(50)->create();
+        User::factory()->times(70)->create();
 
         // DB::table('users')->insert([
         //     'first_name' => 'Prawin',

@@ -105,6 +105,11 @@
               </a>
               <p class="mt-2"><small class="btn-inner--text">A Jesuit Province in South Asia Assistancy</small></p>
               </div>
+              @if(session('status'))
+                  <div class="alert alert-success" role="alert">
+                    {{session('status')}}
+                  </div>
+                @endif
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center  mb-4 ">

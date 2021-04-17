@@ -5,11 +5,14 @@
         <div class="container mt-4">  
           <div class="card">
             <div class="card-header bg-danger">
-              <strong class="text-white">Enter the year to find User Admission by year</strong>
+              <strong class="text-white">Search User By 
+              <span class="text-uppercase btn btn-sm btn-pill badge badge-pill badge-white text-muted font-weight-bolder">
+              <span class="text-dark">Admission Year </span>/<span class="text-primary"> First Name </span>/<span class="text-warning"> Sur Name </span>/<span class="text-info"> email</span></strong>
+              </span>
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                  <form action="{{route('admin.searchUser')}}" class="navbar-search-light">
+                  <form action="{{route('admin.searchUserByYear')}}" class="navbar-search-light">
                     <div class="form-group mt-4 ml-4 mb-4">
                       <div class="input-group input-group-alternative input-group-merge">
                         <div class="input-group-prepend">

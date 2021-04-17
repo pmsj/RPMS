@@ -121,7 +121,7 @@
                                 <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                               </div>
                               {{-- email input field --}}
-                              <input class="form-control text-primary" id="email" type="email" name="email" placeholder="your email here..." required />
+                              <input class="form-control text-primary @error('email') is-invalid @enderror" id="email" type="email" name="email" placeholder="your email here..." required />
                               @error('email')
                               <span class="invalid-feedback is-invalid" role="alert">
                                 {{$message}}

@@ -79,7 +79,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {  //prevent-
     
     //search routes
     Route::get('/user/report', [SearchUserController::class, 'index'])->name('search');
-    Route::get('/user/current-year/', [SearchUserController::class, 'searchUserByYear'])->name('searchUser');
+    Route::get('/user/search-result-by-year', [SearchUserController::class, 'searchUserByYear'])->name('searchUserByYear');
+    Route::get('/user/current-year-admission', [SearchUserController::class, 'currentYearAdmissions'])->name('currentYearAdmissions');
+    Route::get('/user/current-year-deacons', [SearchUserController::class, 'currentYearDeacons'])->name('currentYearDeacons');
+    Route::get('/user/current-year-departed-users', [SearchUserController::class, 'currentYearDepartedUsers'])->name('currentYearDepartedUsers');
     
   });
   //user related page

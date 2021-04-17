@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateAppointmentsTable extends Migration
+class CreateUserAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,11 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('user_appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('ministry', 191)->nullable();
             $table->Integer('designation_id')->unsigned(10)->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('ministry', 191)->nullable();
             $table->string('institution_parish_office', 191);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -30,8 +30,6 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
             $table->foreign('community_id')->references('id')->on('community')->onDelete('cascade');
-
-
         });
     }
 
@@ -42,6 +40,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('user_appointments');
     }
 }

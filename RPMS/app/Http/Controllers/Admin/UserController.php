@@ -11,6 +11,9 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 // use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class UserController extends Controller
@@ -22,8 +25,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(10);
-        $RecycleBin = User::onlyTrashed()->latest()->paginate(10);
+        $users = User::paginate(10,['*'], 'users');
+        $RecycleBin = User::onlyTrashed()->latest()->paginate(10, ['*'], 'RecycleBin');
         return view('admin.users.index',compact('users', 'RecycleBin'));
     }
 

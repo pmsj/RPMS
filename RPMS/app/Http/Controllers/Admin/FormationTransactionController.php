@@ -27,7 +27,7 @@ class FormationTransactionController extends Controller
     public function index()
     {
         $formationStage = Formation_stage::first();
-        $users = $formationStage->users()->paginate(15);
+        $users = $formationStage->users()->paginate(10);
         return view('admin.formationTransaction.index', compact([
             'users',
             'formationStage'

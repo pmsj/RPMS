@@ -67,7 +67,6 @@
             @endforelse
              {{-- @endfor --}}
         </table>
-        {{$user->links()}}
       @else  
           <div class="header pb-6 d-flex align-items-center" >
           <!-- Mask -->

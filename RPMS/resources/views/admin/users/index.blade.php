@@ -7,15 +7,17 @@
     <div class="card">
       <div class="card-header border-0 bg-default">
         <div class="row align-items-center">
-          <div class="col">
-            <h3 class="mb-0 text-center text-white">
-              Users List 
-                             <a href="{{route('admin.users.create')}}" class="badge badge-pill badge-warning badge-circle badge-lg  text-center"><i class="fas fa-plus-circle"></i></a>
-
-            </h3>
-          </div>
           <div class="mt-2">
             <input class="form-control d-block" id="myInput" type="text" placeholder="Search table here...">
+          </div>
+          <div class="col">
+            <h3 class="mb-0 text-center text-white">            
+                  Users List 
+                  <a href="{{route('admin.users.create')}}" class="badge badge-pill badge-warning badge-circle badge-lg  text-center"><i class="fas fa-plus-circle"></i></a>
+            </h3>
+          </div>
+          <div class="col text-right">
+            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-sm badge-circle  badge-secondary border-white">{{$users->total()}}</span></a>
           </div>
         </div>
          
@@ -34,7 +36,7 @@
               <th scope="col" class="text-white">Actions</th>
             </tr>
           </thead>
-          <tbody class="">
+          <tbody class="" id="myTable">
                 @foreach ($users as $user)
                     <tr>
                         <td>{{$users->firstItem()+$loop->index}}</td>
@@ -54,7 +56,7 @@
                 @endforeach            
           </tbody>
         </table>
-        {{$users->links()}}
+        {{$users->appends(['RecycleBin' => $RecycleBin->currentPage()])->links()}}
       </div>
     </div>
   </div>
@@ -67,13 +69,13 @@
       <div class="card-header border-0 bg-white">
         <div class="row align-items-center">
             <div class="mt-2">
-            <input class="form-control d-block" id="myInput" type="text" placeholder="Search table here...">
+            <input class="form-control d-block boarder-primary" id="Input" type="text" placeholder="Search table here...">
           </div>
           <div class="col">
             <h3 class="mb-0 float-right text-info font-weight-bolder"> <i class="fas fa-trash text-danger display-4 mr-2"></i> Users Trash List </h3>
           </div>
           <div class="col text-right">
-            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-sm badge-circle  badge-secondary border-white">{{count( $RecycleBin)}}</span></a>
+            <a href="#!" class="btn btn-sm btn-primary">Total : <span class="badge badge-sm badge-circle  badge-secondary border-white">{{$RecycleBin->total()}}</span></a>
           </div>
         </div>
       </div>
@@ -92,7 +94,7 @@
               <th scope="col">Actions</th>
             </tr>
           </thead>
-          <tbody class="" id="myTable">
+          <tbody class="" id="Trash">
                 @foreach ($RecycleBin as $trash)
                     <tr>
                         <td>{{$trash->id}}</td>
@@ -133,7 +135,7 @@
                 </div>
               </div>
             @endif            
-        {{$RecycleBin->links()}}
+        {{$RecycleBin->appends(['users' => $users->currentPage()])->links()}}
       </div>
     </div>
   </div>
@@ -141,7 +143,8 @@
     
 <!--JQuery for filter-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--filters =>table rows-->
+
+<!--First filters =>table rows-->
 <script>
   $(document).ready(function() {
     $("#myInput").on("keyup", function() {
@@ -151,5 +154,17 @@
       });
     });
   });
+</script>
+<!--Second filters =>table rows-->
+<script>
+  $(document).ready(function() {
+    $("#Input").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#Trash tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 @endsection
 

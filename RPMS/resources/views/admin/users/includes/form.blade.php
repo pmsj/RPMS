@@ -40,7 +40,7 @@
                          <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Email</label>
-                            <input type="text" name="email" id="input-username" class="form-control text-primary @error('email') is-invalid @enderror" 
+                            <input type="email" name="email" id="input-username" class="form-control text-primary @error('email') is-invalid @enderror" 
                             value="{{old('email')}}  @isset($user){{$user->email}}@endisset">
                             @error('email')
                             <span class="text-danger text-small">{{ $message }}</span>
