@@ -117,7 +117,7 @@
               </div>
  {{-- Login form --}}
               <form role="form" method="POST" action="{{ route('login') }}" class="">
-{{-- @csrf  token--}}
+{{-- @H  token--}}
                 @csrf
                 <div class="form-group mb-3">
                   <div class="input-group input-group-merge input-group-alternative">

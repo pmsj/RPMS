@@ -8,38 +8,42 @@
       <div class="card-header border-0 bg-danger">
         <div class="row align-items-center">
           <div class="col">
-            <a href="{{route('admin.search')}}" class=" btn-default btn-sm badge badge-pill  display-inline-block"><i class="fas fa-angle-double-left"></i> Back</a>
-            <h3 class="mb-0 float-right text-white">Search Result for  <i class="fas fa-angle-double-right"></i> <span class="font-weight-bolder">{{$year}}</span></h3>
+            <a href="{{route('admin.generateIndividaulReport')}}" class=" btn-default btn-sm badge badge-pill  display-inline-block"><i class="fas fa-angle-double-left"></i> Back</a>
+            <h3 class="mb-0 float-right text-white"><i class="fas fa-search mr-2 h1 text-white font-weight-bolder"></i>Search Result
+           
+            </h3>
+            
           </div>
           <div class="col text-right">
-            <a href="#!" class="btn-primary badge badge-sm badge-pill">Total : <span class="badge badge-sm badge-circle badge-floating badge-secondary border-white">{{count( $users)}}</span></a>
+            <a href="#!" class="btn-primary badge badge-sm badge-pill">Total : <span class="badge badge-sm badge-circle badge-floating badge-secondary border-white">{{count( $formationStages)}}</span></a>
           </div>
         </div>
       </div>
       <div class="table-responsive ">
         <!-- Projects table -->
-        @if(count($users) > 0)
+        @if(count($formationStages) > 0)
         <table class="table align-items-center table-hover mb-3">
           <thead class="thead-light font-weight-bolder text-center">
             <tr>
               {{-- <th scope="col">No.</th> --}}
-              <th scope="col">User Id</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Middle Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Year of Admission</th>
+              <th scope="col">Stages</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Concerned Authority</th>
+              <th scope="col">Community</th>
             </tr>
           </thead>
           <tbody class="text-center">
-                @foreach ($users as $user)
+                @foreach ($formationStages as $formationStage)
                     <tr>
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->first_name}}</td>
-                        <td>{{$user->middle_name}}</td>
-                        <td>{{$user->sur_name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{ \Carbon\Carbon::parse($user->entry_date_sj)->format('Y')}} </td> 
+                        <td>{{$formationStage->stage_name}}</td>
+                        <td>{{ \Carbon\Carbon::parse($formationStage->start_date)->format('d-m-y')}} </td>
+                        <td>{{ \Carbon\Carbon::parse($formationStage->end_date)->format('d-m-y')}} </td>
+                        {{-- <td>{{$formationStage->end_date}}</td> --}}
+                        <td>{{$formationStage->concerned_authority}}</td>
+                        <td>{{$formationStage->community_name}}</td>
+                        
+                        {{-- <td>{{ \Carbon\Carbon::parse($user->entry_date_sj)->format('Y')}} </td>  --}}
                     </tr>
                 @endforeach            
           </tbody>
@@ -57,7 +61,6 @@
               </div>
              @endif 
         </table>
-        {{$users->links()}}
       </div>
     </div>
   </div>

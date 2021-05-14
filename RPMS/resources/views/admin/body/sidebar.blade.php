@@ -181,6 +181,7 @@
               <div class="collapse" id="auth7">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link text-dark" href="{{route('admin.search')}}"> - Search Users</a></li>
+                  <li class="nav-item"> <a class="nav-link text-dark" href="{{route('admin.generateIndividaulReport')}}"> - Individual Report</a></li>
                   <li class="nav-item"><a class="nav-link text-dark" href="{{route('admin.user.departed')}}"> - All Departures</a></li>
                   <li class="nav-item"><a class="nav-link text-dark" href="{{route('admin.currentYearAdmissions')}}"></i> - Current Year Admission</a></li>
                   <li class="nav-item"><a class="nav-link text-dark" href="{{route('admin.currentYearDeacons')}}"></i> - Current Year Deacons</a></li>

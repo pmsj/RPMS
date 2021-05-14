@@ -23,9 +23,7 @@ class AppointmentController extends Controller
         $designations = Designation::first();
         $users = $designations->users;
 
-        return view('admin.appointment.index', compact([
-            'users', 
-        ]));
+        return view('admin.appointment.index', compact('users'));
 
         // $designations = Designation::with('users')->findOrFail([1, 2]);
         // $users = collect([]);

@@ -18,7 +18,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
-                        <input name="query" class="form-control" placeholder="Enter any year..." type="text">
+                        <input name="query" class="form-control text-muted" placeholder="type here to search..." type="text">
                         <span>
                           <button type="submit" class="btn btn-md rounded btn-danger badge-danger border-white">
                             search 

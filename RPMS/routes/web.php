@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\EventController;
 use App\Http\Controllers\Admin\EventTransactionController;
 
 Use App\Http\Controllers\Backend\SearchUserController;
+use App\Http\Controllers\Admin\IndividualReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {  //prevent-
     Route::get('/user/current-year-admission', [SearchUserController::class, 'currentYearAdmissions'])->name('currentYearAdmissions');
     Route::get('/user/current-year-deacons', [SearchUserController::class, 'currentYearDeacons'])->name('currentYearDeacons');
     Route::get('/user/current-year-departed-users', [SearchUserController::class, 'currentYearDepartedUsers'])->name('currentYearDepartedUsers');
+
+    //report
+    Route::get('/user/generate-individual-report', [IndividualReportController::class, 'index'])->name('generateIndividaulReport');
+    Route::get('/user/individual-report', [IndividualReportController::class, 'individaulReport'])->name('individaulReport');
+
     
   });
   //user related page

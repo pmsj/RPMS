@@ -110,7 +110,7 @@
                     </div>
                         {{-- submit button and cancle button --}}
                         <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                        <a href="{{route('admin.event.index')}}" class="btn btn-sm btn-info">Cancel</a>    
+                        <a href="{{route('admin.eventTransaction.index')}}" class="btn btn-sm btn-info">Cancel</a>    
                 </div>
             </div>
             </div>

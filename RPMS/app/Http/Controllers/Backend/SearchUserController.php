@@ -7,6 +7,7 @@ use App\Models\Event;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Carbon\Carbon;
 
 class SearchUserController extends Controller

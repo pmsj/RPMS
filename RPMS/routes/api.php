@@ -15,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    //I added this
+    // if(Features::enabled(Features::updatePassword()))
+    // {
+    //     Route::put('/user/password', [PasswordController::class, 'update'])
+        
+    //     ->name('user-password.update');
+    // }
     return $request->user();
+
 });
